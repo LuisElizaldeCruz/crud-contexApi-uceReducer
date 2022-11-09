@@ -28,11 +28,15 @@ export const ContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(appReducer, initialState);
 
     const addTask = (task) => {
-        dispatch({ type: "ADD_TASK", payload:{id:1, title:"nuevo"}})
+        dispatch({ type: "ADD_TASK", payload:task})
+    }
+
+    const deleteTask = () =>{
+        dispatch({type: "DELETE_TASK"});
     }
 
     return (
-        <GlobalContext.Provider value={{ ...state, addTask }}>
+        <GlobalContext.Provider value={{ ...state, addTask, deleteTask }}>
             {children}
         </GlobalContext.Provider>
     )
